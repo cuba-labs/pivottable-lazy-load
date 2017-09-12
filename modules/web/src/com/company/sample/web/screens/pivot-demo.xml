@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.company.sample.web.screens.PivotDemo"
+        messagesPack="com.company.sample.web.screens"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <collectionDatasource id="tipsDs"
+                              class="com.company.sample.entity.TipInfo"
+                              refreshMode="NEVER"
+                              view="_local">
+            <query>
+                <![CDATA[select e from pivottablelazyload$TipInfo e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="spacer" spacing="true">
+        <chart:pivotTable id="pivotTable"
+                          datasource="tipsDs"
+                          visible="false">
+            <chart:columns>
+                <chart:column value="day"/>
+                <chart:column value="time"/>
+            </chart:columns>
+            <chart:properties>
+                <chart:property name="totalBill"/>
+                <chart:property name="tip"/>
+                <chart:property name="sex"/>
+                <chart:property name="smoker"/>
+                <chart:property name="day"/>
+                <chart:property name="time"/>
+                <chart:property name="size"/>
+            </chart:properties>
+            <chart:rows>
+                <chart:row value="sex"/>
+                <chart:row value="smoker"/>
+            </chart:rows>
+        </chart:pivotTable>
+        <button caption="Click Me!"
+                invoke="onClick"/>
+        <label id="spacer"/>
+    </layout>
+</window>
